@@ -10,7 +10,7 @@ routes.get('/users', (request, response) => {
     return response.json({ evento: 'Semana omini stack', teste: 'get' });
 });
 
-routes.get('/sessions', SessionController.create);
+routes.post('/sessions', SessionController.create);
 
 routes.get('/ongs', OngController.index);
 routes.post('/ongs', OngController.create);
