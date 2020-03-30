@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './styless.css';
 import logoImg from '../../assets/logo.svg';
-import {FiArrowLeft} from 'react-icons/fi';
-import {Link, useHistory} from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -10,15 +10,15 @@ export default function Register() {
 
     const history = useHistory();
 
-    const[name, setName] = useState('');
-    const[email, setEmail] = useState('');
-    const[whatsapp, setWhatsapp] = useState('');
-    const[city, setCity] = useState('');
-    const[uf, setUf] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
+    const [city, setCity] = useState('');
+    const [uf, setUf] = useState('');
 
-    async function handleRegister(e){
+    async function handleRegister(e) {
         e.preventDefault();
-        
+
         const data = {
             name,
             email,
@@ -26,27 +26,27 @@ export default function Register() {
             city,
             uf,
         };
-        
-        try{
+
+        try {
             const respose = await api.post('ongs', data);
             alert(`Seu ID de acesso: ${respose.data.id}`);
             history.push('/');
-        }catch(err){
+        } catch (err) {
             alert(`Erro no cadastro, tente novamente. ${err}`);
         }
-        
+
     }
 
-    return(
+    return (
         <div className="register-container">
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="Be The Hero"/>
+                    <img src={logoImg} alt="Be The Hero" />
                     <h1>Cadastro</h1>
                     <p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
                     <Link className="back-link" to="/">
-                        <FiArrowLeft size={16} color="#E02041"/>
-                        Não tenho cadastro  
+                        <FiArrowLeft size={16} color="#E02041" />
+                        Não tenho cadastro
                     </Link>
                 </section>
                 <form onSubmit={handleRegister}>
@@ -55,10 +55,10 @@ export default function Register() {
                     <input type="text" placeholder="WhatsApp" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} />
                     <div className="input-group">
                         <input type="text" placeholder="Cidade" value={city} onChange={e => setCity(e.target.value)} />
-                        <input type="text" placeholder="UF" value={uf} onChange={e => setUf(e.target.value)} style= {{width:80}} />
+                        <input type="text" placeholder="UF" value={uf} onChange={e => setUf(e.target.value)} style={{ width: 80 }} />
                     </div>
                     <button className="button" type="submit">Cadastrar</button>
-                    
+
                 </form>
             </div>
         </div>
